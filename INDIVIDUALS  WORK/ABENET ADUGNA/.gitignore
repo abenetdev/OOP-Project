@@ -1,0 +1,48 @@
+# === Java ===
+*.class
+*.jar
+*.war
+*.ear
+
+# === Build directories ===
+/bin/
+/build/
+/out/
+
+# === IntelliJ IDEA ===
+.idea/
+*.iml
+*.iws
+*.ipr
+/out/
+
+# === Eclipse ===
+.project
+.classpath
+.settings/
+.metadata/
+
+# === VS Code ===
+.vscode/
+
+# === Logs and temp files ===
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# === OS-specific ===
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === Other IDEs/Editors ===
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
