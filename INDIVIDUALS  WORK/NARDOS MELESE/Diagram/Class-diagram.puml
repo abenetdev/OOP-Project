@@ -1,0 +1,76 @@
+
+@startuml
+title Vehicle Rental System - UML Class Diagram
+
+class Vehicle {
+  - vehicleID : String
+  - make : String
+  - model : String
+  - type : String
+  - availabilityStatus : boolean
+  - rentalRatePerDay : double
+  + checkAvailability() : boolean
+  + calculateRentalCost() : double
+  + updateStatus() : void
+}
+
+class Customer {
+  - customerID : String
+  - name : String
+  - licenseNumber : String
+  - contactInfo : String
+  + makeReservation() : Reservation
+  + viewHistory() : void
+}
+
+class Reservation {
+  - reservationID : String
+  - startDate : Date
+  - endDate : Date
+  - status : String
+  + cancelReservation() : void
+  + calculateDuration() : int
+}
+
+class RentalTransaction {
+  - transactionID : String
+  - totalCost : double
+  + generateInvoice() : String
+  + finalizeTransaction() : void
+}
+
+class Admin {
+  - adminID : String
+  - name : String
+  + addVehicle() : void
+  + removeVehicle() : void
+  + updateRentalRate() : void
+  + viewReports() : void
+}
+
+class Payment {
+  - paymentID : String
+  - amount : double
+  - paymentDate : Date
+  - paymentMethod : String
+  + processPayment() : boolean
+}
+
+class Maintenance {
+  - maintenanceID : String
+  - serviceDate : Date
+  - description : String
+  + logService() : void
+  + getMaintenanceHistory() : List
+}
+
+Customer --> Reservation : makes
+Reservation --> Vehicle : reserves
+Reservation --> Customer : for
+Reservation --> RentalTransaction : triggers >
+RentalTransaction --> Payment : includes
+Admin --> Vehicle : manages
+Admin --> Reservation : oversees
+Maintenance --> Vehicle : services
+
+@enduml

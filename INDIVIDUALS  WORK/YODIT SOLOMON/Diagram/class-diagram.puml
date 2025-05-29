@@ -1,0 +1,99 @@
+@startuml
+ title updated Real Estate Listing Platform - UML Class Diagram
+
+class User {
+  - userID : String
+  - name : String
+  - email : String
+  - password : String
+  - role : String
+  - phone : String
+  - profilePic : String
+  + login() : Boolean
+  + updateProfile() : void
+  + sendMessage() : void
+  + saveProperty() : void
+}
+
+class Property {
+  - propertyID : String
+  - address : String
+  - type : String
+  - subType : String
+  - price : Float
+  - status : String
+  - size : Float
+  - bedrooms : Integer
+  - bathrooms : Integer
+  - amenities : List
+  + updateDetails() : void
+  + addMedia() : void
+  + changeStatus() : void
+}
+
+class Listing {
+  - listingID : String
+  - propertyID : String
+  - agentID : String
+  - dateListed : Date
+  - priceHistory : List
+  + updateListing() : void
+}
+
+class MediaAsset {
+  - mediaID : String
+  - propertyID : String
+  - mediaType : String
+  - filePath : String
+  + uploadMedia() : void
+}
+
+class Offer {
+  - offerID : String
+  - buyerID : String
+  - propertyID : String
+  - amount : Float
+  - status : String
+  - conditions : String
+  + submitOffer() : void
+  + respondToOffer() : void
+}
+
+class Transaction {
+  - transactionID : String
+  - offerID : String
+  - dateClosed : Date
+  - finalPrice : Float
+  - commission : Float
+  + recordTransaction() : void
+}
+
+class Message {
+  - messageID : String
+  - senderID : String
+  - receiverID : String
+  - content : String
+  - timestamp : DateTime
+  + sendMessage() : void
+}
+
+class SavedProperty {
+  - userID : String
+  - propertyID : String
+  + save() : void
+  + unsave() : void
+}
+
+' Relationships
+User --> Property : saves
+User --> Message : sends
+User --> Listing : manages
+Property --> Listing : has
+Property --> MediaAsset : contains
+Property --> Offer : receives
+Offer --> Transaction : triggers
+User --> Offer : makes
+SavedProperty --> Property : bookmarks
+SavedProperty --> User : owned by
+
+@enduml

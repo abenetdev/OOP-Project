@@ -1,0 +1,92 @@
+@startuml
+class Patient {
+  -patientId: String
+  -name: String
+  -dateOfBirth: Date
+  -contactInfo: String
+  -medicalHistory: List<String>
+  +getMedicalHistory(): List<String>
+  +addMedicalHistory(note: String): void
+}
+
+class Provider {
+  -providerId: String
+  -name: String
+  -specialization: String
+  -contactInfo: String
+  +checkAvailability(): Boolean
+}
+
+class Appointment {
+  -appointmentId: String
+  -startTime: DateTime
+  -endTime: DateTime
+  -reason: String
+  -status: Status
+  +reschedule(newStart: DateTime): Boolean
+  +cancel(): void
+}
+
+class MedicalRecord {
+  -recordId: String
+  -timestamp: DateTime
+  -notes: String
+  -diagnosis: String
+  -treatments: List<String>
+  +addLabResult(result: LabResult): void
+}
+
+class LabResult {
+  -resultId: String
+  -testName: String
+  -resultValue: String
+  -timestamp: DateTime
+}
+
+class Prescription {
+  -prescriptionId: String
+  -medication: String
+  -dosage: String
+  -startDate: Date
+  -endDate: Date
+}
+
+class Invoice {
+  -invoiceId: String
+  -totalAmount: Float
+  -status: Status
+  +generatePDF(): File
+}
+
+class Payment {
+  -paymentId: String
+  -amount: Float
+  -method: PaymentMethod
+  -timestamp: DateTime
+  +process(): Boolean
+}
+
+enum Status {
+  Scheduled
+  Completed
+  Cancelled
+  Pending
+  Paid
+  Refunded
+}
+
+enum PaymentMethod {
+  Insurance
+  CreditCard
+  Cash
+}
+
+Patient "1" o-- "0..*" Appointment
+Provider "1" o-- "0..*" Appointment
+Patient "1" o-- "0..*" MedicalRecord
+MedicalRecord "1" *-- "0..*" LabResult
+Patient "1" o-- "0..*" Prescription
+Appointment o-- Invoice
+Invoice "1" o-- "0..*" Payment
+
+@enduml

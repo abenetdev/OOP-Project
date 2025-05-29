@@ -1,0 +1,57 @@
+// Customer class
+public class Customer {
+    private String customerId;
+    private String name;
+    private String email;
+    private String phone;
+    private LoyaltyProgram loyaltyProgram;
+
+    // Constructors, getters, setters, and methods
+}
+
+// Hotel class
+public class Hotel {
+    private String hotelId;
+    private String name;
+    private String location;
+    private List<Room> rooms;
+    private List<Amenity> amenities;
+
+    // Constructors, methods for adding rooms, filtering, etc.
+}
+
+// Room class
+public class Room {
+    private String roomId;
+    private String roomType;
+    private double basePrice;
+    private boolean isAvailable;
+    private List<String> amenities;
+
+    // Methods to check availability, calculate price, etc.
+}
+
+// Reservation class
+public class Reservation {
+    private String reservationId;
+    private Customer customer;
+    private Hotel hotel;
+    private Room room;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
+    private double totalPrice;
+    private boolean isConfirmed;
+
+    // Methods for managing reservations
+}
+
+// PricingStrategy interface and example implementation
+public interface PricingStrategy {
+    double calculatePrice(Room room, LocalDate checkIn, LocalDate checkOut);
+}
+
+public class SeasonalPricingStrategy implements PricingStrategy {
+    @Override
+    public double calculatePrice(Room room, LocalDate checkIn, LocalDate checkOut) {
+        // Sample dynamic pricing logic
+        return room.getBasePrice(); // Add
